@@ -21,7 +21,33 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
 'Waszyngton': 'Olympia', 'Wirginia Zachodnia': 'Charleston', 'Wisconsin':
 'Madison', 'Wyoming': 'Cheyenne'}
 numberOfQuizes = 35
+numberOfStates = 50
+states = list(capitals.keys())
 for quizNum in range(numberOfQuizes):
-    
+    #utworzenie quizow i odpowiedzi w pliku txt
+    quizFile = open(f'capitalsquiz{quizNum+1}.txt', 'w')
+    answerKeyFile = open(f'capitalsquiz_answers{quizNum+1}.txt', 'w')
+
+    #zapis naglowków quizu
+    quizFile.write('Imię i nazwisko:\n\nData:\n\nKlasa:\n\n')
+    quizFile.write((' '*20) + f'Quiz stolic stanów (Quiz {quizNum+1})')
+    quizFile.write('\n\n')
+
+    #losowe ustalenie kolejnosci
+    random.shuffle(states)
+
+    #iteracja przez 50 stanów i przygotowanie odpowiedzi
+    for questionNum in range(numberOfStates):
+        correctAnswer = capitals[states[questionNum]]
+        wrongAnswers = list(capitals.values())
+        del wrongAnswers[wrongAnswers.index(correctAnswer)]
+        wrongAnswers = random.sample(wrongAnswers, 3)
+        answerOptions = wrongAnswers + [correctAnswer]
+        random.shuffle(answerOptions)
+
+        #zapis pytań i odpowiedzi do pliku
+        quizFile.write(f'{questionNum+1}. Co jest stolicą stanu {states[questionNum]}?\n')
+
+
 
 
