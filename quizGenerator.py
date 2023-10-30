@@ -1,5 +1,3 @@
-from pathlib import Path
-import os
 import random
 
 capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
@@ -22,6 +20,7 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
 'Madison', 'Wyoming': 'Cheyenne'}
 numberOfQuizes = 35
 numberOfStates = 50
+numberOfAnswers = 4
 states = list(capitals.keys())
 for quizNum in range(numberOfQuizes):
     #utworzenie quizow i odpowiedzi w pliku txt
@@ -47,6 +46,16 @@ for quizNum in range(numberOfQuizes):
 
         #zapis pytań i odpowiedzi do pliku
         quizFile.write(f'{questionNum+1}. Co jest stolicą stanu {states[questionNum]}?\n')
+        for i in range(numberOfAnswers):
+            quizFile.write(f"   {'ABCD}'[i]}. {answerOptions[i]}\n")
+        quizFile.write('\n')
+
+        answerKeyFile.write(f"{questionNum + 1}."
+                            f"{'ABCD'[answerOptions.index(correctAnswer)]} \n")
+    quizFile.close()
+    answerKeyFile.close()
+
+
 
 
 
