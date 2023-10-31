@@ -1,3 +1,5 @@
+#program do kopiowania do i z schowka
+#program trzeba odpalac w konsoli
 import shelve, pyperclip, sys
 
 mcbShelf = shelve.open('mcb')
